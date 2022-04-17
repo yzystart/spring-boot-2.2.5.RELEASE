@@ -5,3 +5,5 @@
   				getBeanClassLoader());
   				这里getSpringFactoriesLoaderFactoryClass() 拿到的就是 org.springframework.boot.autoconfigure.EnableAutoConfiguration
 也就是加载META-INF/spring.factories 下  	org.springframework.boot.autoconfigure.EnableAutoConfiguration 层级下的所有类
+
+如果要自定义starter 就要在 org.springframework.boot.autoconfigure.EnableAutoConfiguration目录下加配置类
