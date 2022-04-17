@@ -1,3 +1,6 @@
+# springboot???? ???????????????????start ??? SpringFactoriesLoader::loadFactoryNames
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+
 # PropertySource Loaders
 org.springframework.boot.env.PropertySourceLoader=\
 org.springframework.boot.env.PropertiesPropertySourceLoader,\

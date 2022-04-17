@@ -1,0 +1,7 @@
+整理了一下springboot自动装配原理：
+首先调用 ConfigurationClassParser的getImports()
+调用 AutoConfigurationImportSelector 的process() ->getAutoConfigurationEntry ()
+-> SpringFactoriesLoader.loadFactoryNames(getSpringFactoriesLoaderFactoryClass(),
+  				getBeanClassLoader());
+  				这里getSpringFactoriesLoaderFactoryClass() 拿到的就是 org.springframework.boot.autoconfigure.EnableAutoConfiguration
+也就是加载META-INF/spring.factories 下  	org.springframework.boot.autoconfigure.EnableAutoConfiguration 层级下的所有类

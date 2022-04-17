@@ -322,8 +322,8 @@ public class SpringApplication {
 			// 异常通报？  实例化了 FailureAnalyzers,在try里面抛出异常的时候用到，估计和监听器类型的写法
 			exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class,
 					new Class[] { ConfigurableApplicationContext.class }, context);
-			// 准备上下文，这里会把context, environment, listeners, applicationArguments, printedBanner 都注册成bean到beanFactory
-			// 把主启动类加到beanDefinitionMap也在这步
+			// 准备上下文，这里会把 environment,applicationArguments, printedBanner 都注册成bean到beanFactory
+			// 把主启动类加到 beanDefinitionMap 也在这步,只是加载到beanDefinitionMap，还没有实例化
 			prepareContext(context, environment, listeners, applicationArguments, printedBanner);
 			// 刷新上下文 最终调的就是 AbstractApplicationContext 的 refresh() 了
 			refreshContext(context);

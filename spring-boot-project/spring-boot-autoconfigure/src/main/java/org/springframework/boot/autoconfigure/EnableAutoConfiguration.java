@@ -80,6 +80,7 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
 @Documented
 @Inherited
 @AutoConfigurationPackage
+// 自动装配通过 AutoConfigurationImportSelector实现
 @Import(AutoConfigurationImportSelector.class)
 public @interface EnableAutoConfiguration {
 
