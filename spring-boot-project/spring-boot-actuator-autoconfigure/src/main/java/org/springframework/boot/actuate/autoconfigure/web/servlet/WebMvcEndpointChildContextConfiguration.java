@@ -70,7 +70,7 @@ class WebMvcEndpointChildContextConfiguration {
 	ManagementErrorPageCustomizer managementErrorPageCustomizer(ServerProperties serverProperties) {
 		return new ManagementErrorPageCustomizer(serverProperties);
 	}
-
+	// 注册 DispatcherServlet？
 	@Bean(name = DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
 	DispatcherServlet dispatcherServlet() {
 		DispatcherServlet dispatcherServlet = new DispatcherServlet();

@@ -99,7 +99,7 @@ public class TransactionAutoConfiguration {
 		@ConditionalOnProperty(prefix = "spring.aop", name = "proxy-target-class", havingValue = "true",
 				matchIfMissing = true)
 		public static class CglibAutoProxyConfiguration {
-
+			// 当spring.aop.proxy-target-class 为true 使用cglib动态代理
 		}
 
 	}

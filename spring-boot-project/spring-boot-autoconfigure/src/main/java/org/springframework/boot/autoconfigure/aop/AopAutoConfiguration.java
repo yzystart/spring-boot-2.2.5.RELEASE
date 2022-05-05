@@ -62,7 +62,7 @@ public class AopAutoConfiguration {
 		@ConditionalOnProperty(prefix = "spring.aop", name = "proxy-target-class", havingValue = "true",
 				matchIfMissing = true)
 		static class CglibAutoProxyConfiguration {
-
+			//AOP默认使用CGLIB
 		}
 
 	}
