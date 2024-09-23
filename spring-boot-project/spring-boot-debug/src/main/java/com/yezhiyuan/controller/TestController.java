@@ -2,13 +2,66 @@ package com.yezhiyuan.controller;
 
 
 import com.yezhiyuan.anno.SkipCheckToken;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.HashMap;
 
 @RestController
 public class TestController {
 
     public static ThreadLocal<String>t =new ThreadLocal<>();
+
+
+    @PostMapping("/export/excel")
+    public void exportExcel(@RequestBody HashMap map, HttpServletResponse response) throws IOException {
+        String filename = "data.xlsx";
+
+        // 创建 Excel 工作簿
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Sheet1");
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("corpId");
+        header.createCell(1).setCellValue("组织名称");
+        header.createCell(2).setCellValue("pc登录人数");
+        header.createCell(3).setCellValue("移动端登录人数");
+        header.createCell(4).setCellValue("月份");
+        header.createCell(5).setCellValue("销售人员ID");
+        header.createCell(6).setCellValue("销售人员名称");
+        header.createCell(7).setCellValue("授权人数");
+        header.createCell(8).setCellValue("版本人数上限");
+
+        Row row = sheet.createRow(1);
+        row.createCell(0).setCellValue("测试");
+        row.createCell(1).setCellValue("测试");
+        row.createCell(2).setCellValue("测试");
+        row.createCell(3).setCellValue("测试");
+        row.createCell(4).setCellValue("测试");
+        row.createCell(5).setCellValue("测试");
+        row.createCell(6).setCellValue("测试");
+        row.createCell(7).setCellValue("测试");
+        row.createCell(8).setCellValue("测试");
+
+        // 填充数据...
+
+        // 设置响应头
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+
+        // 写入输出流
+        OutputStream out = response.getOutputStream();
+        workbook.write(out);
+        out.close();
+        workbook.close();
+    }
+
 
 
     @SkipCheckToken

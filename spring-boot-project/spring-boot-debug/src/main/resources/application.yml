@@ -2,3 +2,6 @@ server:
   port: 8080
   tomcat:
     max-threads: 1
+spring:
+  main:
+    allow-bean-definition-overriding: true
