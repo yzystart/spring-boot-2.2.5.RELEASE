@@ -6,7 +6,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,6 +22,21 @@ import java.util.HashMap;
 public class TestController {
 
     public static ThreadLocal<String>t =new ThreadLocal<>();
+
+    private static final String IMAGE_URL = "https://static-legacy.dingtalk.com/media/lADPDhYBVipLJZnNA7_NA78_959_959.jpg";
+
+    @GetMapping("test")
+    public ResponseEntity<byte[]> getImage() {
+        RestTemplate restTemplate = new RestTemplate();
+        byte[] imageBytes = restTemplate.getForObject(IMAGE_URL, byte[].class);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "image/jpeg");
+        System.out.println(imageBytes[0]);
+        System.out.println(imageBytes[1]);
+        System.out.println(imageBytes[2]);
+        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+    }
 
 
     @PostMapping("/export/excel")

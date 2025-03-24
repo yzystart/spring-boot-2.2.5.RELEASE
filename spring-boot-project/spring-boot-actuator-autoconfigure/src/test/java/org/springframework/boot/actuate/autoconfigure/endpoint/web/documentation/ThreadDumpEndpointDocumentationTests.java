@@ -47,7 +47,7 @@ class ThreadDumpEndpointDocumentationTests extends MockMvcEndpointDocumentationT
 
 	@Test
 	void jsonThreadDump() throws Exception {
-		ReentrantLock lock = new ReentrantLock();
+		ReentrantLock lock = new ReentrantLock(true);
 		CountDownLatch latch = new CountDownLatch(1);
 		new Thread(() -> {
 			try {
